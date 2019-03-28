@@ -1,10 +1,12 @@
 ﻿Imports System.Net
 Imports System.Web.Http
 
+<CustomAuthorization>
 Public Class logincontroller
     Inherits ApiController
 
     ' GET api/<controller>
+
     Public Function GetValues() As IEnumerable(Of String)
         Return New String() {"value1", "value2"}
     End Function
