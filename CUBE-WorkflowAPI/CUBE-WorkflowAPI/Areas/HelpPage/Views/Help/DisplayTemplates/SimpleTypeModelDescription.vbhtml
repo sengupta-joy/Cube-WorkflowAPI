@@ -1,0 +1,3 @@
+@Imports CUBE_WorkflowAPI.Areas.HelpPage.ModelDescriptions
+@ModelType SimpleTypeModelDescription
+@Model.Documentation
