@@ -1,26 +1,34 @@
 ﻿Imports System.Net
+Imports System.Web.Http.Controllers
 Imports System.Web.Http.Filters
 Imports System.Web.Mvc
 Imports System.Web.Mvc.Filters
 
-Public Class CustomAuthorization : Inherits System.Web.Mvc.AuthorizeAttribute : Implements System.Web.Http.Filters.IFilter
+Public Class CustomAuthorization : Inherits System.Web.Http.AuthorizeAttribute : Implements System.Web.Mvc.IAuthorizationFilter
 
-    Private ReadOnly Property IFilter_AllowMultiple As Boolean Implements IFilter.AllowMultiple
-        Get
-            Return False
-        End Get
-    End Property
-
-    Public Overrides Sub OnAuthorization(filterContext As AuthorizationContext)
-        If Not authorized(filterContext) Then
-
-            filterContext.HttpContext.Response.Write("Unauthorized")
+    Public Overrides Sub OnAuthorization(actionContext As HttpActionContext)
+        If Not authorized(actionContext) Then
+            actionContext.Response = New System.Net.Http.HttpResponseMessage(HttpStatusCode.Unauthorized)
         End If
     End Sub
 
-    Private Function authorized(filterContext As AuthorizationContext) As Boolean
+    Public Overloads Sub OnAuthorization(filterContext As AuthorizationContext) Implements Mvc.IAuthorizationFilter.OnAuthorization
+        If Not authorized(filterContext.ActionDescriptor.ActionName, filterContext.Controller.ControllerContext.Controller.ToString()) Then
+            filterContext.HttpContext.Response.Write("unauthorized")
+        End If
+    End Sub
 
-        If Not filterContext.Controller.ToString() = "login" And filterContext.ActionDescriptor.ActionName = "GetValues" Then
+    Private Function authorized(actionName As String, controlername As String) As Boolean
+        If Not controlername = "login" And actionName = "GetValues" Then
+            Return False
+        End If
+
+        Return True
+    End Function
+
+    Private Function authorized(filterContext As HttpActionContext) As Boolean
+
+        If Not filterContext.ControllerContext.ControllerDescriptor.ControllerName = "login" And filterContext.ActionDescriptor.ActionName = "GetValues" Then
             Return False
         End If
 
