@@ -1,19 +1,18 @@
 ﻿Imports System.Net
 Imports System.Web.Http
 
+
 <CustomAuthorization>
 Public Class logincontroller
     Inherits ApiController
 
     ' GET api/<controller>
 
-    Public Function GetValues() As IEnumerable(Of String)
-        Return New String() {"value1", "value2"}
-    End Function
+
 
     ' GET api/<controller>/5
-    Public Function GetValue(ByVal id As Integer) As String
-        Return "value"
+    Public Function GetValue(ByVal id As String, password As String) As UserSession
+        Return UserSession.validateLogin(id, password)
     End Function
 
     ' POST api/<controller>
