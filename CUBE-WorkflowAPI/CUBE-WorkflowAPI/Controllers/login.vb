@@ -8,19 +8,12 @@ Imports Newtonsoft.Json
 Public Class logincontroller
     Inherits ApiController
 
-    ' GET api/<controller>
-    <HttpGet>
-    Public Function GetValues() As List(Of String)
-        Dim resp As HttpResponseMessage
-        Dim lst = New String() {"value1", "value2"}
 
-        Return lst.ToList()
-
-    End Function
 
     ' GET api/<controller>/5
-    Public Function GetValue(ByVal id As Integer) As String
-        Return "value"
+    <HttpGet>
+    Public Function GetValue(ByVal id As String, password As String) As UserInfo
+        Return UserInfo.validateLogin(id, password)
     End Function
 
     ' POST api/<controller>

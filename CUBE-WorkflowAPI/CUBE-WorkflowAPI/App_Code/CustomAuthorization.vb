@@ -28,10 +28,24 @@ Public Class CustomAuthorization : Inherits System.Web.Http.AuthorizeAttribute :
 
     Private Function authorized(filterContext As HttpActionContext) As Boolean
 
-        If Not filterContext.ControllerContext.ControllerDescriptor.ControllerName = "login" And filterContext.ActionDescriptor.ActionName = "GetValues" Then
-            Return False
+        If filterContext.ControllerContext.ControllerDescriptor.ControllerName = "login" And filterContext.ActionDescriptor.ActionName = "GetValue" Then
+            Return True
         End If
 
-        Return True
+        Dim segmennts = HttpContext.Current.Request.Url.Segments().ToList()
+        Dim apiPos = segmennts.IndexOf("api/")
+        Dim key = segmennts(apiPos + 1)
+
+
+        key = HttpContext.Current.Request.Headers("key")
+
+        If UserInfo.isValidKey(key) Then
+            HttpContext.Current.Request.Headers.Add("key", key)
+            Return True
+        End If
+
+
+
+        Return False
     End Function
 End Class

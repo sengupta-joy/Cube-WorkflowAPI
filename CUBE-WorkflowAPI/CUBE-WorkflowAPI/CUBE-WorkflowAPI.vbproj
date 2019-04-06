@@ -53,6 +53,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HashChecker">
+      <HintPath>..\..\..\..\HashChecker\HashChecker\bin\Debug\HashChecker.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -166,6 +169,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\CustomAuthorization.vb" />
+    <Content Include="App_Code\DB\DataLayer.vb" />
+    <Content Include="App_Code\DB\SelectResponse.vb" />
     <Compile Include="App_Code\UserSession.vb" />
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\FilterConfig.vb" />
