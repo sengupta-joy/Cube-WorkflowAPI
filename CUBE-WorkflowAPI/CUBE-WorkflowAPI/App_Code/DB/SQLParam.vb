@@ -1,11 +1,15 @@
-﻿Public Class SQLParam : Inherits Attribute
+﻿
 
-    Public Property ParameterName As String
-    Public Property ParameterType As ParamTypes
+Namespace AutoMapper
+    Public Class SQLParam : Inherits Attribute
 
-    Public Sub New(ParamName As String, Optional ParamType As ParamTypes = ParamTypes.StringType)
-        ParameterName = ParamName
-        ParameterType = ParamType
-    End Sub
+        Public Property ParameterName As String
+        Public Property ParameterType As ParamTypes
 
-End Class
+        Public Sub New(ParamName As String, Optional ParamType As ParamTypes = ParamTypes.StringType)
+            ParameterName = ParamName
+            ParameterType = ParamType
+        End Sub
+
+    End Class
+End Namespace

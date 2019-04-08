@@ -3,9 +3,10 @@ Imports System
 Imports System.Data
 Imports CUBE_WorkflowAPI
 Imports App_Code.DB
+Imports AutoMapper
 
 <Serializable>
-Public Class UserInfo : Implements iMapper
+Public Class UserInfo : Implements AutoMapper.iMapper
 
     Private _nm As String
     Private _id As String
@@ -19,7 +20,7 @@ Public Class UserInfo : Implements iMapper
 
 
 #Region "Properties"
-    <SQLParam("UserName")>
+    <AutoMapper.SQLParam("UserName")>
     Public Property Name As String
         Get
             Return _nm
@@ -28,13 +29,13 @@ Public Class UserInfo : Implements iMapper
             _nm = value
         End Set
     End Property
-    <SQLParam("UserID")>
+    <AutoMapper.SQLParam("UserID")>
     Public ReadOnly Property Id As String
         Get
             Return _id
         End Get
     End Property
-    <SQLParam("Email")>
+    <AutoMapper.SQLParam("Email")>
     Public Property Email As String
         Get
             Return _eml
@@ -43,7 +44,7 @@ Public Class UserInfo : Implements iMapper
             _eml = value
         End Set
     End Property
-    <SQLParam("Active", ParamTypes.BooleanType)>
+    <AutoMapper.SQLParam("Active", ParamTypes.BooleanType)>
     Public Property Active As Boolean
         Get
             Return _actv
@@ -52,7 +53,7 @@ Public Class UserInfo : Implements iMapper
             _actv = value
         End Set
     End Property
-    <SQLParam("Designation")>
+    <AutoMapper.SQLParam("Designation")>
     Public Property Designation As String
         Get
             Return _desig
@@ -61,7 +62,7 @@ Public Class UserInfo : Implements iMapper
             _desig = value
         End Set
     End Property
-    <SQLParam("Depertment")>
+    <AutoMapper.SQLParam("Depertment")>
     Public Property Depertment As String
         Get
             Return _dept
@@ -70,7 +71,7 @@ Public Class UserInfo : Implements iMapper
             _dept = value
         End Set
     End Property
-    <SQLParam("Branch")>
+    <AutoMapper.SQLParam("Branch")>
     Public Property Branch As String
         Get
             Return _brn
@@ -79,7 +80,7 @@ Public Class UserInfo : Implements iMapper
             _brn = value
         End Set
     End Property
-    <SQLParam("Boss")>
+    <AutoMapper.SQLParam("Boss")>
     Public Property Boss As String
         Get
             Return _bs
@@ -88,7 +89,7 @@ Public Class UserInfo : Implements iMapper
             _bs = value
         End Set
     End Property
-    <SQLParam("Company")>
+    <AutoMapper.SQLParam("Company")>
     Public Property Company As String
         Get
             Return _comp
@@ -110,7 +111,7 @@ Public Class UserInfo : Implements iMapper
 
         Dim resp = dl.SelectData("exec USP_USERS_GET @USERID='" + uid + "'")
         If resp.Success Then
-            Mapper.MapDataFromDB(resp.Data.Tables(0), Me)
+            AutoMapper.Mapper.MapDataFromDB(resp.Data.Tables(0), Me)
         Else
             Throw New Exception("Error loading user")
         End If
