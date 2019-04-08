@@ -1,7 +1,7 @@
 ﻿Imports System.Data
 Imports CUBE_WorkflowAPI.App_Code.DB
 
-Public Class DBContext
+Public Class DataLayer
 
     Private _cs As String
 

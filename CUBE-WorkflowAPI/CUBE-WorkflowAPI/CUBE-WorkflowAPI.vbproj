@@ -169,10 +169,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\AppConstant.vb" />
+    <Compile Include="App_Code\LoginResponse.vb" />
+    <Compile Include="App_Code\Mapper.vb" />
     <Compile Include="App_Code\CustomAuthorization.vb" />
     <Compile Include="App_Code\DB\DataLayer.vb" />
     <Compile Include="App_Code\DB\SelectResponse.vb" />
+    <Compile Include="App_Code\DB\SQLParam.vb" />
     <Compile Include="App_Code\UserSession.vb" />
+    <Compile Include="App_Code\Util\iMapper.vb" />
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />

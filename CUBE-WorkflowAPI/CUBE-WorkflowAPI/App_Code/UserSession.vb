@@ -5,7 +5,7 @@ Imports CUBE_WorkflowAPI
 Imports App_Code.DB
 
 <Serializable>
-Public Class UserInfo
+Public Class UserInfo : Implements iMapper
 
     Private _nm As String
     Private _id As String
@@ -17,11 +17,9 @@ Public Class UserInfo
     Private _bs As String
     Private _comp As String
 
-    Public Sub New(uid As String)
 
-    End Sub
-
-
+#Region "Properties"
+    <SQLParam("UserName")>
     Public Property Name As String
         Get
             Return _nm
@@ -30,13 +28,13 @@ Public Class UserInfo
             _nm = value
         End Set
     End Property
-
+    <SQLParam("UserID")>
     Public ReadOnly Property Id As String
         Get
             Return _id
         End Get
     End Property
-
+    <SQLParam("Email")>
     Public Property Email As String
         Get
             Return _eml
@@ -45,7 +43,7 @@ Public Class UserInfo
             _eml = value
         End Set
     End Property
-
+    <SQLParam("Active", ParamTypes.BooleanType)>
     Public Property Active As Boolean
         Get
             Return _actv
@@ -54,7 +52,7 @@ Public Class UserInfo
             _actv = value
         End Set
     End Property
-
+    <SQLParam("Designation")>
     Public Property Designation As String
         Get
             Return _desig
@@ -63,7 +61,7 @@ Public Class UserInfo
             _desig = value
         End Set
     End Property
-
+    <SQLParam("Depertment")>
     Public Property Depertment As String
         Get
             Return _dept
@@ -72,7 +70,7 @@ Public Class UserInfo
             _dept = value
         End Set
     End Property
-
+    <SQLParam("Branch")>
     Public Property Branch As String
         Get
             Return _brn
@@ -81,7 +79,7 @@ Public Class UserInfo
             _brn = value
         End Set
     End Property
-
+    <SQLParam("Boss")>
     Public Property Boss As String
         Get
             Return _bs
@@ -90,7 +88,7 @@ Public Class UserInfo
             _bs = value
         End Set
     End Property
-
+    <SQLParam("Company")>
     Public Property Company As String
         Get
             Return _comp
@@ -99,13 +97,32 @@ Public Class UserInfo
             _comp = value
         End Set
     End Property
+#End Region
+
+
+    Public Sub New(uid As String)
+        _id = uid
+        loadUser(uid)
+    End Sub
+
+    Private Sub loadUser(uid As String)
+        Dim dl As New DataLayer(USERDB)
+
+        Dim resp = dl.SelectData("exec USP_USERS_GET @USERID='" + uid + "'")
+        If resp.Success Then
+            Mapper.MapDataFromDB(resp.Data.Tables(0), Me)
+        Else
+            Throw New Exception("Error loading user")
+        End If
+
+    End Sub
 
     Public Function saveUser() As Boolean
 
     End Function
 
-    Public Shared Function validateLogin(uid As String, password As String) As UserInfo
-        Dim dl As New DBContext(USERDB)
+    Public Shared Function validateLogin(uid As String, password As String) As LoginResponse
+        Dim dl As New DataLayer(USERDB)
         Dim params As New List(Of SqlClient.SqlParameter)()
         Dim param As New SqlClient.SqlParameter()
 
@@ -125,9 +142,8 @@ Public Class UserInfo
 
         Dim Response = dl.ExecuteSP("[SP_VALIDATE_LOGIN]", CommandType.StoredProcedure, params)
 
-        Return New UserInfo(Response.Data.Tables(0).Rows(0)(0))
+        Return New LoginResponse(Response.Data.Tables(0).Rows(0)(0), Response.Data.Tables(0).Rows(0)(1))
 
-        Return Nothing
     End Function
 
     Friend Shared Function isValidKey(key As String) As Boolean

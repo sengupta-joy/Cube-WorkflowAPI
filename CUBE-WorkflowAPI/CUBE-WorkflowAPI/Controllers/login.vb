@@ -12,7 +12,7 @@ Public Class logincontroller
 
     ' GET api/<controller>/5
     <HttpGet>
-    Public Function GetValue(ByVal id As String, password As String) As UserInfo
+    Public Function GetValue(ByVal id As String, password As String) As LoginResponse
         Return UserInfo.validateLogin(id, password)
     End Function
 
