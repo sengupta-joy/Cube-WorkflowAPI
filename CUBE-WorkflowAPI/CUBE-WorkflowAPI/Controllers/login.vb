@@ -13,7 +13,13 @@ Public Class logincontroller
     ' GET api/<controller>/5
     <HttpGet>
     Public Function GetValue(ByVal id As String, password As String) As LoginResponse
-        Return UserInfo.validateLogin(id, password)
+        Dim resp = UserInfo.validateLogin(id, password)
+
+        If resp Is Nothing Then
+            HttpContext.Current.Response.Write("{'message':'invalid login'}")
+        Else
+            Return resp
+        End If
     End Function
 
     ' POST api/<controller>

@@ -21,5 +21,7 @@ Public Module WebApiConfig
         config.Formatters.JsonFormatter.SupportedMediaTypes.Add(New MediaTypeHeaderValue("text/html"))
         config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = New DefaultContractResolver()
 
+        config.Filters.Add(New CUBE_WorkflowAPI.CustomAuthorization())
+
     End Sub
 End Module

@@ -107,7 +107,7 @@ Public Class UserInfo : Inherits App_Code.Util.AutoMapper.AutoMapperCls
     End Sub
 
     Private Sub loadUser(uid As String)
-        Dim dl As New DataLayer(USERDB)
+        Dim dl As New DataLayer(WORKFLOWDB)
 
         Dim resp = dl.SelectData("exec USP_USERS_GET @USERID='" + uid + "'")
         If resp.Success Then
@@ -124,7 +124,7 @@ Public Class UserInfo : Inherits App_Code.Util.AutoMapper.AutoMapperCls
     End Function
 
     Public Shared Function validateLogin(uid As String, password As String) As LoginResponse
-        Dim dl As New DataLayer(USERDB)
+        Dim dl As New DataLayer(WORKFLOWDB)
         Dim params As New List(Of SqlClient.SqlParameter)()
         Dim param As New SqlClient.SqlParameter()
 
@@ -144,14 +144,36 @@ Public Class UserInfo : Inherits App_Code.Util.AutoMapper.AutoMapperCls
 
         Dim Response = dl.ExecuteSP("[SP_VALIDATE_LOGIN]", CommandType.StoredProcedure, params)
 
-        Return New LoginResponse(Response.Data.Tables(0).Rows(0)(0), Response.Data.Tables(0).Rows(0)(1))
+        If Response.Success And Response.HasTable Then
+            If Response.GetData(0).Rows.Count > 0 Then
+                Return New LoginResponse(Response.GetData(0, 0, 0), Response.GetData(0, 0, 1))
+            End If
+        End If
 
+        Return Nothing
     End Function
 
-    Friend Shared Function isValidKey(key As String) As Boolean
-        If key = "key" Then
-            Return True
+    Friend Shared Function isValidKey(token As String) As Boolean
+        Dim sql As String = "SELECT dbo.udf_validateKey('" + token + "')"
+        Dim dl As New DataLayer(WORKFLOWDB)
+
+        Dim resp = dl.SelectData(sql)
+
+        If resp.Success Then
+            If resp.HasTable Then
+                If resp.GetData(0).Rows.Count > 0 Then
+                    HttpContext.Current.Request.Headers.Add("userid", resp.GetData(0, 0, 0))
+                    Return True
+                Else
+                    Return False
+                End If
+            Else
+                Return False
+            End If
+        Else
+            Return False
         End If
+
         Return False
     End Function
 End Class

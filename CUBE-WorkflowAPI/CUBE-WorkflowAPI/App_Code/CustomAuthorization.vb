@@ -32,15 +32,12 @@ Public Class CustomAuthorization : Inherits System.Web.Http.AuthorizeAttribute :
             Return True
         End If
 
-        Dim segmennts = HttpContext.Current.Request.Url.Segments().ToList()
-        Dim apiPos = segmennts.IndexOf("api/")
-        Dim key = segmennts(apiPos + 1)
-
-
-        key = HttpContext.Current.Request.Headers("key")
+        Dim key = HttpContext.Current.Request.Headers("token")
+        If key Is Nothing Then
+            Return False
+        End If
 
         If UserInfo.isValidKey(key) Then
-            HttpContext.Current.Request.Headers.Add("key", key)
             Return True
         End If
 

@@ -176,6 +176,8 @@
     <Compile Include="App_Code\UserSession.vb" />
     <Compile Include="App_Code\Util\AutoMapper\iMapper.vb" />
     <Compile Include="App_Code\Util\AutoMapper\MapperEnum.vb" />
+    <Compile Include="App_Code\Workflow\Framework\IFrameworkActions.vb" />
+    <Compile Include="App_Code\Workflow\Framework\WorkflowFrameworkBase.vb" />
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
@@ -209,6 +211,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.vb" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.vb" />
     <Compile Include="Controllers\login.vb" />
+    <Compile Include="App_Code\Workflow\WorkflowCls.vb" />
+    <Compile Include="Controllers\WorkflowController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -228,7 +232,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Controllers\HomeController.vb" />
-    <Compile Include="Controllers\ValuesController.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

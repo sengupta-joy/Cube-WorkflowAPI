@@ -29,6 +29,11 @@ Namespace App_Code.DB
             End Get
         End Property
 
+        Public ReadOnly Property HasTable As Boolean
+            Get
+                Return IIf(Data.Tables.Count > 0, True, False)
+            End Get
+        End Property
 
         Public Function GetData(tableIndex As Integer) As DataTable
             Return Me.Data.Tables(tableIndex)

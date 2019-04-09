@@ -3,9 +3,9 @@
 
     Function Index() As ActionResult
 
-        ' Dim u As New UserInfo("AUBUSR190690000T")
+        ' Dim u As New WorkflowFramework.WorkflowCls()
 
-        ViewData("Title") = "Home Page"
+        ' ViewData("Title") = u.Name
 
         Return View()
     End Function
