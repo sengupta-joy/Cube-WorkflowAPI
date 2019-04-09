@@ -28,5 +28,18 @@ Namespace App_Code.DB
                 Return _msg
             End Get
         End Property
+
+
+        Public Function GetData(tableIndex As Integer) As DataTable
+            Return Me.Data.Tables(tableIndex)
+        End Function
+
+        Public Function GetData(tableIndex As Integer, rowIndex As Integer, colIndex As Integer) As Object
+            Return Me.Data.Tables(tableIndex).Rows(rowIndex)(colIndex)
+        End Function
+
+        Public Function GetData(tableIndex As Integer, rowIndex As Integer) As DataRow
+            Return Me.Data.Tables(tableIndex).Rows(rowIndex)
+        End Function
     End Class
 End Namespace
