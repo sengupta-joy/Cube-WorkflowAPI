@@ -112,7 +112,7 @@ Public Class UserInfo : Inherits App_Code.Util.AutoMapper.AutoMapperCls
         Dim resp = dl.SelectData("exec USP_USERS_GET @USERID='" + uid + "'")
         If resp.Success Then
             'AutoMapper.Mapper.MapDataFromDB(resp.Data.Tables(0), Me)
-            map(resp.GetData(0))
+            mapFromDB(resp.GetData(0))
         Else
             Throw New Exception("Error loading user")
         End If
