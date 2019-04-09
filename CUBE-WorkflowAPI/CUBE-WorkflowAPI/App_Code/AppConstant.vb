@@ -1,17 +1,12 @@
-﻿Imports System.Runtime.CompilerServices
+﻿Imports System
+Imports System.Configuration
+Imports System.Linq
+Imports System.Runtime.CompilerServices
 
 Public Module AppConstant
     Public USERDB As String = ConfigurationManager.ConnectionStrings.Item("UserDB").ConnectionString
 
-    Public Enum ParamTypes
-        BooleanType
-        StringType
-        IntType
-        LongType
-        DateType
-        FloatType
-        DoubleType
-    End Enum
+
 
     <Extension>
     Public Function isNull(obj As Object, defaultValue As Object) As Object
@@ -32,7 +27,7 @@ Public Module AppConstant
 
     <Extension>
     Public Function isin(obj As Object, ParamArray values As Object()) As Boolean
-        If values.Contains(obj) Then
+        If values.ToList().Contains(obj) Then
             Return True
         Else
             Return False

@@ -1,14 +1,18 @@
-﻿Imports System.Reflection
+﻿
+Imports System.Collections.Generic
 Imports System.Data
-Imports CUBE_WorkflowAPI
-
+Imports System.Linq
+Imports System.Reflection
 
 Namespace AutoMapper
-    Public Class Mapper
+    Public MustInherit Class AutoMapperCls : Implements iMapper
+
+        Protected Sub map(Data As DataTable) Implements iMapper.map
+            MapDataFromDB(Data, Me)
+        End Sub
 
 
-
-        Public Shared Sub MapDataFromDB(dt As DataTable, ByRef obj As iMapper)
+        Private Sub MapDataFromDB(dt As DataTable, ByRef obj As iMapper)
             For Each p As PropertyInfo In obj.GetType().GetProperties().ToList()
                 For Each attr In p.GetCustomAttributes().ToList()
                     If TypeOf attr Is SQLParam Then
@@ -28,7 +32,7 @@ Namespace AutoMapper
             Next
         End Sub
 
-        Private Shared Sub setValue(p As PropertyInfo, obj As iMapper, paramValue As Object, paramType As ParamTypes)
+        Private Sub setValue(p As PropertyInfo, obj As iMapper, paramValue As Object, paramType As ParamTypes)
             If paramType = ParamTypes.BooleanType Then
                 p.SetValue(obj, Boolean.Parse(paramValue))
             ElseIf paramType = ParamTypes.IntType Then
@@ -38,9 +42,12 @@ Namespace AutoMapper
             End If
         End Sub
 
-        Public Shared Function MapDataToDB(obj As iMapper) As List(Of SqlClient.SqlParameter)
+        Private Function MapDataToDB(obj As iMapper) As List(Of SqlClient.SqlParameter)
 
         End Function
 
+
     End Class
 End Namespace
+
+

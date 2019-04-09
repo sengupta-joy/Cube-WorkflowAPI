@@ -53,9 +53,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HashChecker">
-      <HintPath>..\..\..\..\HashChecker\HashChecker\bin\Debug\HashChecker.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -170,7 +167,7 @@
   <ItemGroup>
     <Compile Include="App_Code\AppConstant.vb" />
     <Compile Include="App_Code\LoginResponse.vb" />
-    <Compile Include="App_Code\Util\AutoMapper\Mapper.vb" />
+    <Compile Include="App_Code\Util\AutoMapper\AutoMapper.vb" />
     <Compile Include="App_Code\CustomAuthorization.vb" />
     <Compile Include="App_Code\DB\DataLayer.vb" />
     <Compile Include="App_Code\DB\SelectResponse.vb" />
