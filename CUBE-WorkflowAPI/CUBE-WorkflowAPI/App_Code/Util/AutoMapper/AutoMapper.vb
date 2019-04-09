@@ -3,16 +3,17 @@ Imports System.Collections.Generic
 Imports System.Data
 Imports System.Linq
 Imports System.Reflection
+Imports CUBE_WorkflowAPI.App_Code.DB
 
-Namespace AutoMapper
-    Public MustInherit Class AutoMapperCls : Implements iMapper
+Namespace App_Code.Util.AutoMapper
+    Public MustInherit Class AutoMapperCls : Implements App_Code.Util.AutoMapper.iMapper
 
-        Protected Sub map(Data As DataTable) Implements iMapper.map
+        Protected Sub map(Data As DataTable) Implements App_Code.Util.AutoMapper.iMapper.map
             MapDataFromDB(Data, Me)
         End Sub
 
 
-        Private Sub MapDataFromDB(dt As DataTable, ByRef obj As iMapper)
+        Private Sub MapDataFromDB(dt As DataTable, ByRef obj As App_Code.Util.AutoMapper.iMapper)
             For Each p As PropertyInfo In obj.GetType().GetProperties().ToList()
                 For Each attr In p.GetCustomAttributes().ToList()
                     If TypeOf attr Is SQLParam Then
@@ -32,18 +33,18 @@ Namespace AutoMapper
             Next
         End Sub
 
-        Private Sub setValue(p As PropertyInfo, obj As iMapper, paramValue As Object, paramType As ParamTypes)
-            If paramType = ParamTypes.BooleanType Then
+        Private Sub setValue(p As PropertyInfo, obj As App_Code.Util.AutoMapper.iMapper, paramValue As Object, paramType As App_Code.Util.AutoMapper.ParamTypes)
+            If paramType = App_Code.Util.AutoMapper.ParamTypes.BooleanType Then
                 p.SetValue(obj, Boolean.Parse(paramValue))
-            ElseIf paramType = ParamTypes.IntType Then
+            ElseIf paramType = App_Code.Util.AutoMapper.ParamTypes.IntType Then
                 p.SetValue(obj, Integer.Parse(paramValue))
-            ElseIf paramType = ParamTypes.DateType Then
+            ElseIf paramType = App_Code.Util.AutoMapper.ParamTypes.DateType Then
                 p.SetValue(obj, Date.Parse(paramValue))
             End If
         End Sub
 
-        Private Function MapDataToDB(obj As iMapper) As List(Of SqlClient.SqlParameter)
-
+        Private Function MapDataToDB(obj As App_Code.Util.AutoMapper.iMapper) As List(Of SqlClient.SqlParameter)
+            Return Nothing
         End Function
 
 

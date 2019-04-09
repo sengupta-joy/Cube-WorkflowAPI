@@ -1,11 +1,12 @@
 ﻿
 Imports System
 Imports System.Data
-Imports CUBE_WorkflowAPI.AutoMapper
 Imports System.Collections.Generic
+Imports App_Code.Util.AutoMapper
+Imports App_Code.DB
 
 <Serializable>
-Public Class UserInfo : Inherits AutoMapperCls
+Public Class UserInfo : Inherits App_Code.Util.AutoMapper.AutoMapperCls
 
     Private _nm As String
     Private _id As String
@@ -19,7 +20,7 @@ Public Class UserInfo : Inherits AutoMapperCls
 
 
 #Region "Properties"
-    <SQLParam("UserName")>
+    <App_Code.DB.SQLParam("UserName")>
     Public Property Name As String
         Get
             Return _nm
@@ -28,13 +29,13 @@ Public Class UserInfo : Inherits AutoMapperCls
             _nm = value
         End Set
     End Property
-    <SQLParam("UserID")>
+    <App_Code.DB.SQLParam("UserID")>
     Public ReadOnly Property Id As String
         Get
             Return _id
         End Get
     End Property
-    <SQLParam("Email")>
+    <App_Code.DB.SQLParam("Email")>
     Public Property Email As String
         Get
             Return _eml
@@ -43,7 +44,7 @@ Public Class UserInfo : Inherits AutoMapperCls
             _eml = value
         End Set
     End Property
-    <SQLParam("Active", AutoMapperConstant.ParamTypes.BooleanType)>
+    <App_Code.DB.SQLParam("Active", App_Code.Util.AutoMapper.ParamTypes.BooleanType)>
     Public Property Active As Boolean
         Get
             Return _actv
@@ -52,7 +53,7 @@ Public Class UserInfo : Inherits AutoMapperCls
             _actv = value
         End Set
     End Property
-    <SQLParam("Designation")>
+    <App_Code.DB.SQLParam("Designation")>
     Public Property Designation As String
         Get
             Return _desig
@@ -61,7 +62,7 @@ Public Class UserInfo : Inherits AutoMapperCls
             _desig = value
         End Set
     End Property
-    <SQLParam("Depertment")>
+    <App_Code.DB.SQLParam("Depertment")>
     Public Property Depertment As String
         Get
             Return _dept
@@ -70,7 +71,7 @@ Public Class UserInfo : Inherits AutoMapperCls
             _dept = value
         End Set
     End Property
-    <SQLParam("Branch")>
+    <App_Code.DB.SQLParam("Branch")>
     Public Property Branch As String
         Get
             Return _brn
@@ -79,7 +80,7 @@ Public Class UserInfo : Inherits AutoMapperCls
             _brn = value
         End Set
     End Property
-    <SQLParam("Boss")>
+    <App_Code.DB.SQLParam("Boss")>
     Public Property Boss As String
         Get
             Return _bs
@@ -88,7 +89,7 @@ Public Class UserInfo : Inherits AutoMapperCls
             _bs = value
         End Set
     End Property
-    <SQLParam("Company")>
+    <App_Code.DB.SQLParam("Company")>
     Public Property Company As String
         Get
             Return _comp

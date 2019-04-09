@@ -1,6 +1,6 @@
 ﻿
 
-Public Module AutoMapperConstant
+Namespace App_Code.Util.AutoMapper
     Public Enum ParamTypes
         BooleanType
         StringType
@@ -10,4 +10,4 @@ Public Module AutoMapperConstant
         FloatType
         DoubleType
     End Enum
-End Module
+End Namespace

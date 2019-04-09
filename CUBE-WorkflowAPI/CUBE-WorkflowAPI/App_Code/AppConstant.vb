@@ -1,6 +1,6 @@
 ﻿Imports System
 Imports System.Configuration
-Imports System.Linq
+Imports System.Collections.Generic
 Imports System.Runtime.CompilerServices
 
 Public Module AppConstant
@@ -27,6 +27,7 @@ Public Module AppConstant
 
     <Extension>
     Public Function isin(obj As Object, ParamArray values As Object()) As Boolean
+
         If values.ToList().Contains(obj) Then
             Return True
         Else
