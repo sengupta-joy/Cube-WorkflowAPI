@@ -168,17 +168,17 @@
   <ItemGroup>
     <Compile Include="App_Code\AppConstant.vb" />
     <Compile Include="App_Code\LoginResponse.vb" />
-    <Compile Include="App_Code\Util\AutoMapper\AutoMapper.vb" />
+    <Compile Include="App_Code\Framework\AutoMapper\AutoMapper.vb" />
     <Compile Include="App_Code\CustomAuthorization.vb" />
     <Compile Include="App_Code\DB\DataLayer.vb" />
     <Compile Include="App_Code\DB\SelectResponse.vb" />
     <Compile Include="App_Code\DB\SQLParam.vb" />
     <Compile Include="App_Code\UserInfo.vb" />
-    <Compile Include="App_Code\Util\AutoMapper\iMapper.vb" />
-    <Compile Include="App_Code\Util\AutoMapper\MapperEnum.vb" />
-    <Content Include="App_Code\Workflow\Framework\IDefaultPropProvider.vb" />
-    <Compile Include="App_Code\Workflow\Framework\IFrameworkActions.vb" />
-    <Compile Include="App_Code\Workflow\Framework\WorkflowFrameworkBase.vb" />
+    <Compile Include="App_Code\Framework\AutoMapper\iMapper.vb" />
+    <Compile Include="App_Code\Framework\AutoMapper\MapperEnum.vb" />
+    <Compile Include="App_Code\Framework\WFFW\IDefaultPropProvider.vb" />
+    <Compile Include="App_Code\Framework\WFFW\IFrameworkActions.vb" />
+    <Compile Include="App_Code\Framework\WFFW\WorkflowFrameworkBase.vb" />
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
@@ -212,7 +212,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.vb" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.vb" />
     <Compile Include="Controllers\login.vb" />
-    <Compile Include="App_Code\Workflow\WorkflowCls.vb" />
+    <Compile Include="App_Code\WorkflowClasses\WorkflowCls.vb" />
     <Compile Include="Controllers\WorkflowController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>

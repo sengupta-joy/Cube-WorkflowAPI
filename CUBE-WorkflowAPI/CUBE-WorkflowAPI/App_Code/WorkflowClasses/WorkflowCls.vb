@@ -4,7 +4,7 @@ Namespace WorkflowFramework
     Public Class WorkflowCls : Inherits WorkflowFrameworkBase(Of WorkflowCls)
 
         Private Sub New()
-
+            Dim i
         End Sub
 
 

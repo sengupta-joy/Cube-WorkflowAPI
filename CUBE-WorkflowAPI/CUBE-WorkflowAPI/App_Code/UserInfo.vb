@@ -105,7 +105,8 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
     End Sub
 
     Public Function saveUser() As Boolean
-
+        Dim x As Int16
+        x = 10
     End Function
 
     Public Shared Function validateLogin(uid As String, password As String) As LoginResponse
