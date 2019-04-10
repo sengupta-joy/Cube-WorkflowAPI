@@ -4,7 +4,10 @@ Imports System.Collections.Generic
 Imports System.Runtime.CompilerServices
 
 Public Module AppConstant
-    Public WORKFLOWDB As String = ConfigurationManager.ConnectionStrings.Item("UserDB").ConnectionString
+
+    Public Const WORKFLOWDB As String = "WORKFLOWDB"
+
+
 
 
 

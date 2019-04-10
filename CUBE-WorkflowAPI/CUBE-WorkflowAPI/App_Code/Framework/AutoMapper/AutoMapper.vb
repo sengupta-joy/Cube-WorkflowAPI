@@ -17,12 +17,20 @@ Namespace App_Code.Framework.AutoMapper
         End Function
 
         Private Sub MapDataFromDB(dt As DataTable, ByRef obj As iMapper)
+            Dim paramName = ""
+            Dim paramType = ""
+            Dim paramValue = ""
+
             For Each p As PropertyInfo In obj.GetType().GetProperties().ToList()
                 For Each attr In p.GetCustomAttributes().ToList()
                     If TypeOf attr Is SQLParam Then
-                        Dim paramName = DirectCast(attr, SQLParam).ParameterName
-                        Dim paramType = DirectCast(attr, SQLParam).ParameterType
-                        Dim paramValue = dt.Rows(0)(DirectCast(attr, SQLParam).ParameterName)
+                        paramName = DirectCast(attr, SQLParam).ParameterName
+                        paramType = DirectCast(attr, SQLParam).ParameterType
+                        Try
+                            paramValue = dt.Rows(0)(DirectCast(attr, SQLParam).ParameterName)
+                        Catch ex As Exception
+                            Dim i = ex.Message
+                        End Try
 
                         If p.CanWrite Then
                             If Not paramType = ParamTypes.StringType Then
@@ -38,7 +46,7 @@ Namespace App_Code.Framework.AutoMapper
 
         Private Sub setValue(p As PropertyInfo, obj As iMapper, paramValue As Object, paramType As ParamTypes)
             If paramType = ParamTypes.BooleanType Then
-                p.SetValue(obj, Boolean.Parse(paramValue))
+                p.SetValue(obj, Boolean.Parse(paramValue).ToString())
             ElseIf paramType = ParamTypes.IntType Then
                 p.SetValue(obj, Integer.Parse(paramValue))
             ElseIf paramType = ParamTypes.DateType Then

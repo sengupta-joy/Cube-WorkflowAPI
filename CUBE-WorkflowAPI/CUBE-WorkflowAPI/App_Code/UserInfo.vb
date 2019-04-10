@@ -2,9 +2,9 @@
 Imports System
 Imports System.Data
 Imports System.Collections.Generic
-Imports App_Code.DB
 Imports CUBE_WorkflowAPI.App_Code.Framework.WFFW
 Imports CUBE_WorkflowAPI.App_Code.Framework.AutoMapper
+Imports CUBE_WorkflowAPI.App_Code.DB
 
 <Serializable>
 Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
@@ -20,7 +20,7 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
 
 
 #Region "Properties"
-    <App_Code.DB.SQLParam("Email")>
+    <SQLParam("Email")>
     Public Property Email As String
         Get
             Return _eml
@@ -29,7 +29,7 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
             _eml = value
         End Set
     End Property
-    <App_Code.DB.SQLParam("Active", ParamTypes.BooleanType)>
+    <SQLParam("Active", ParamTypes.BooleanType)>
     Public Property Active As Boolean
         Get
             Return _actv
@@ -38,7 +38,10 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
             _actv = value
         End Set
     End Property
-    <App_Code.DB.SQLParam("Designation")>
+
+
+
+    <SQLParam("Designation")>
     Public Property Designation As String
         Get
             Return _desig
@@ -47,7 +50,7 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
             _desig = value
         End Set
     End Property
-    <App_Code.DB.SQLParam("Depertment")>
+    <SQLParam("Depertment")>
     Public Property Depertment As String
         Get
             Return _dept
@@ -56,7 +59,7 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
             _dept = value
         End Set
     End Property
-    <App_Code.DB.SQLParam("Branch")>
+    <SQLParam("Branch")>
     Public Property Branch As String
         Get
             Return _brn
@@ -65,7 +68,7 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
             _brn = value
         End Set
     End Property
-    <App_Code.DB.SQLParam("Boss")>
+    <SQLParam("Boss")>
     Public Property Boss As String
         Get
             Return _bs
@@ -74,7 +77,7 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
             _bs = value
         End Set
     End Property
-    <App_Code.DB.SQLParam("Company")>
+    <SQLParam("Company")>
     Public Property Company As String
         Get
             Return _comp
@@ -104,12 +107,9 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
 
     End Sub
 
-    Public Function saveUser() As Boolean
-        Dim x As Int16
-        x = 10
-    End Function
 
-    Public Shared Function validateLogin(uid As String, password As String) As LoginResponse
+
+    Public Shared Function validateLogin(uid As String, password As String) As LoginCls
         Dim dl As New DataLayer(WORKFLOWDB)
         Dim params As New List(Of SqlClient.SqlParameter)()
         Dim param As New SqlClient.SqlParameter()
@@ -132,7 +132,7 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
 
         If Response.Success And Response.HasTable Then
             If Response.GetData(0).Rows.Count > 0 Then
-                Return New LoginResponse(Response.GetData(0, 0, 0), Response.GetData(0, 0, 1))
+                Return New LoginCls(Response.GetData(0, 0, 0), Response.GetData(0, 0, 1))
             End If
         End If
 

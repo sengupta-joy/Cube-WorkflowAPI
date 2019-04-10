@@ -167,7 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\AppConstant.vb" />
-    <Compile Include="App_Code\LoginResponse.vb" />
+    <Compile Include="App_Code\LoginCls.vb" />
     <Compile Include="App_Code\Framework\AutoMapper\AutoMapper.vb" />
     <Compile Include="App_Code\CustomAuthorization.vb" />
     <Compile Include="App_Code\DB\DataLayer.vb" />

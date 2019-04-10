@@ -5,10 +5,13 @@ Public Class DataLayer
 
     Private _cs As String
 
-    Public Sub New(connectionString As String)
-        _cs = connectionString
+    Public Sub New(key As String)
+        _cs = getConnectionString(key)
     End Sub
 
+    Private Function getConnectionString(key As String) As String
+        Return ConfigurationManager.ConnectionStrings.Item(key).ConnectionString
+    End Function
 
     Public Function SelectData(sql As String, Optional params As List(Of SqlClient.SqlParameter) = Nothing) As SelectResponse
         Dim cn As New SqlClient.SqlConnection(_cs)

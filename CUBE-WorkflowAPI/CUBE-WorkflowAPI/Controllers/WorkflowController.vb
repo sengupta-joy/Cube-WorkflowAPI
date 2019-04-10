@@ -1,7 +1,7 @@
 ﻿Imports System.Net
 Imports System.Web.Http
+Imports CUBE_WorkflowAPI.App_Code.Framework.WFFW
 Imports CUBE_WorkflowAPI.App_Code.WorkflowFramework
-
 
 Namespace Controllers
     Public Class WorkflowController
@@ -9,12 +9,15 @@ Namespace Controllers
 
         ' GET: api/Workflow
         Public Function GetValues() As Dictionary(Of String, String)
-            Return WorkflowCls.getItems()
+            Dim obj As WorkflowFrameworkBase(Of WorkflowCls)
+
+            obj = New WorkflowCls()
+            Return obj.GetItems()
         End Function
 
         ' GET: api/Workflow/5
-        Public Function GetValue(ByVal id As Integer) As String
-            Return "value"
+        Public Function GetValue(ByVal id As Integer) As WorkflowCls
+            Return WorkflowCls.getIte(id)
         End Function
 
         ' POST: api/Workflow

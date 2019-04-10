@@ -33,7 +33,7 @@ Namespace App_Code.Framework.WFFW
         End Property
 
         <App_Code.DB.SQLParam("ID")>
-        Public ReadOnly Property Id As String Implements IDefaultPropProvider.Id
+        Public ReadOnly Property ID As String Implements IDefaultPropProvider.Id
             Get
                 Return _id
             End Get

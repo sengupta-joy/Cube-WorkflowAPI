@@ -1,10 +1,12 @@
 ﻿
 Imports CUBE_WorkflowAPI
+Imports CUBE_WorkflowAPI.App_Code.DB
 
 <Serializable>
-Public Class LoginResponse
+Public Class LoginCls
     Private _uinfo As UserInfo
     Private _tok As String
+
 
     Public ReadOnly Property UserInfo As UserInfo
         Get
@@ -22,4 +24,14 @@ Public Class LoginResponse
         _tok = token
     End Sub
 
+    Friend Shared Function save(userid As String, password As String) As Object
+        Dim dl As New DataLayer(WORKFLOWDB)
+        Dim sql As String = "exec USP_LOGIN_CHANGE_PASSWORD @USERID='" + userid + "', @PASSWORD='" + password + "' "
+        Dim resp As SelectResponse
+
+
+        resp = dl.SelectData(sql)
+        Return resp.Success
+
+    End Function
 End Class

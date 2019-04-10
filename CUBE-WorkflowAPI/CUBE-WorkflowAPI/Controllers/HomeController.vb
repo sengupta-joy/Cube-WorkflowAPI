@@ -3,9 +3,9 @@
 
     Function Index() As ActionResult
 
-        ' Dim u As New WorkflowFramework.WorkflowCls()
 
-        ' ViewData("Title") = u.Name
+
+        ViewData("Title") = Boolean.Parse("True").ToString()
 
         Return View()
     End Function

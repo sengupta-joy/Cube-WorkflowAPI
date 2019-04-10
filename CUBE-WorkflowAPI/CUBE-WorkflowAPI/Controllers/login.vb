@@ -12,7 +12,7 @@ Public Class logincontroller
 
     ' GET api/<controller>/5
     <HttpGet>
-    Public Function GetValue(ByVal id As String, password As String) As LoginResponse
+    Public Function GetValue(ByVal id As String, password As String) As LoginCls
         Dim resp = UserInfo.validateLogin(id, password)
 
         If resp Is Nothing Then
@@ -22,14 +22,10 @@ Public Class logincontroller
         End If
     End Function
 
-    ' POST api/<controller>
-    Public Sub PostValue(<FromBody()> ByVal value As String)
-
-    End Sub
-
     ' PUT api/<controller>/5
-    Public Sub PutValue(ByVal id As Integer, <FromBody()> ByVal value As String)
-
+    <HttpPut>
+    Public Sub PutValue(ByVal userid As String, ByVal password As String)
+        Dim resp = LoginCls.save(userid, password)
     End Sub
 
     ' DELETE api/<controller>/5
