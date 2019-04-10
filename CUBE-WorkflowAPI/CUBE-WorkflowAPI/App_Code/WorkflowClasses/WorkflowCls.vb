@@ -1,6 +1,10 @@
-﻿Imports CUBE_WorkflowAPI.WorkflowFramework.Framework
+﻿
 
-Namespace WorkflowFramework
+
+
+Imports CUBE_WorkflowAPI.App_Code.Framework.WFFW
+
+Namespace App_Code.WorkflowFramework
     Public Class WorkflowCls : Inherits WorkflowFrameworkBase(Of WorkflowCls)
 
         Private Sub New()

@@ -1,4 +1,4 @@
-﻿Namespace WorkflowFramework.Framework
+﻿Namespace App_Code.Framework.WFFW
     Public Interface IDefaultPropProvider
 
 

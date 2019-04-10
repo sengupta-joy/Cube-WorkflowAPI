@@ -1,6 +1,6 @@
 ﻿
 
-Namespace App_Code.Util.AutoMapper
+Namespace App_Code.Framework.AutoMapper
     Public Enum ParamTypes
         BooleanType
         StringType

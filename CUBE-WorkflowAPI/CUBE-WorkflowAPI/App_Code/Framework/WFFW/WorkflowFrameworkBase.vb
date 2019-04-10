@@ -1,8 +1,8 @@
 ﻿
 Imports System.Data
-Imports CUBE_WorkflowAPI.App_Code.Util.AutoMapper
+Imports CUBE_WorkflowAPI.App_Code.Framework.AutoMapper
 
-Namespace WorkflowFramework.Framework
+Namespace App_Code.Framework.WFFW
     Public MustInherit Class WorkflowFrameworkBase(Of T) : Inherits AutoMapperCls : Implements IActionContext(Of T), IDefaultPropProvider
 
         Protected Eventbindings As New Dictionary(Of String, String)

@@ -2,9 +2,9 @@
 Imports System
 Imports System.Data
 Imports System.Collections.Generic
-Imports App_Code.Util.AutoMapper
 Imports App_Code.DB
-Imports CUBE_WorkflowAPI.WorkflowFramework.Framework
+Imports CUBE_WorkflowAPI.App_Code.Framework.WFFW
+Imports CUBE_WorkflowAPI.App_Code.Framework.AutoMapper
 
 <Serializable>
 Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
@@ -29,7 +29,7 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
             _eml = value
         End Set
     End Property
-    <App_Code.DB.SQLParam("Active", App_Code.Util.AutoMapper.ParamTypes.BooleanType)>
+    <App_Code.DB.SQLParam("Active", ParamTypes.BooleanType)>
     Public Property Active As Boolean
         Get
             Return _actv
