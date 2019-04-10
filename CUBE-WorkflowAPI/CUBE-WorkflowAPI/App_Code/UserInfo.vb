@@ -4,12 +4,12 @@ Imports System.Data
 Imports System.Collections.Generic
 Imports App_Code.Util.AutoMapper
 Imports App_Code.DB
+Imports CUBE_WorkflowAPI.WorkflowFramework.Framework
 
 <Serializable>
-Public Class UserInfo : Inherits App_Code.Util.AutoMapper.AutoMapperCls
+Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
 
-    Private _nm As String
-    Private _id As String
+
     Private _eml As String
     Private _actv As Boolean
     Private _desig As String
@@ -20,21 +20,6 @@ Public Class UserInfo : Inherits App_Code.Util.AutoMapper.AutoMapperCls
 
 
 #Region "Properties"
-    <App_Code.DB.SQLParam("UserName")>
-    Public Property Name As String
-        Get
-            Return _nm
-        End Get
-        Set(value As String)
-            _nm = value
-        End Set
-    End Property
-    <App_Code.DB.SQLParam("UserID")>
-    Public ReadOnly Property Id As String
-        Get
-            Return _id
-        End Get
-    End Property
     <App_Code.DB.SQLParam("Email")>
     Public Property Email As String
         Get
@@ -175,5 +160,9 @@ Public Class UserInfo : Inherits App_Code.Util.AutoMapper.AutoMapperCls
         End If
 
         Return False
+    End Function
+
+    Public Overrides Function GetItem(id As String) As UserInfo
+        Return New UserInfo(id)
     End Function
 End Class
