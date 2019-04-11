@@ -7,8 +7,6 @@ Namespace App_Code.WorkflowFramework
         Dim EntryConditions As New List(Of WorkflowStateCondition)()
 
 
-        Public Overrides Function GetItem(id As String) As WorkflowState
 
-        End Function
     End Class
 End Namespace

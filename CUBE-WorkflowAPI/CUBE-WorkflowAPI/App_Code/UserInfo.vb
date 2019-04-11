@@ -89,9 +89,12 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
 #End Region
 
 
-    Public Sub New(uid As String)
+    Private Sub New(uid As String)
         _id = uid
         loadUser(uid)
+    End Sub
+    Private Sub New(company As Entity)
+
     End Sub
 
     Private Sub loadUser(uid As String)
@@ -107,7 +110,12 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
 
     End Sub
 
-
+    Friend Shared Function getItem(id As String) As UserInfo
+        Return New UserInfo(id)
+    End Function
+    Friend Shared Function createItem(company As Entity) As UserInfo
+        Return New UserInfo(company)
+    End Function
 
     Public Shared Function validateLogin(uid As String, password As String) As LoginCls
         Dim dl As New DataLayer(WORKFLOWDB)
@@ -163,7 +171,8 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
         Return False
     End Function
 
-    Public Overrides Function GetItem(id As String) As UserInfo
-        Return New UserInfo(id)
-    End Function
+
+End Class
+
+Friend Class Entity
 End Class

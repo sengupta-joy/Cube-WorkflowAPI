@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\AppConstant.vb" />
+    <Compile Include="App_Code\Framework\WFFW\EventBindingTypes.vb" />
     <Compile Include="App_Code\LoginCls.vb" />
     <Compile Include="App_Code\Framework\AutoMapper\AutoMapper.vb" />
     <Compile Include="App_Code\CustomAuthorization.vb" />

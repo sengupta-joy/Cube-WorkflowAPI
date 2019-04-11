@@ -4,6 +4,6 @@
 
 
         Function GetItems() As Dictionary(Of String, String)
-        Function GetItem(id As String) As T
+        Function save() As Boolean
     End Interface
 End Namespace

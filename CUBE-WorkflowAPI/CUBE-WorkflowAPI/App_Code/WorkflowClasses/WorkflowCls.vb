@@ -74,19 +74,22 @@ Namespace App_Code.WorkflowFramework
 
         End Sub
         Friend Sub New(workflowid As String)
-            Dim sql As String
-            Dim dl As New DataLayer(WORKFLOWDB)
-            Dim resp As SelectResponse
-            _id = workflowid
 
-            sql = "exec " + Eventbindings("loadItem") + " @ITEMID ='" + workflowid + "'"
+            LoadItem(workflowid)
 
-            resp = dl.SelectData(sql)
-            If resp.Success Then
-                mapFromDB(resp.GetData(0))
-            Else
-                Throw New Exception("Error loading workflow")
-            End If
+            'Dim sql As String
+            'Dim dl As New DataLayer(WORKFLOWDB)
+            'Dim resp As SelectResponse
+            '_id = workflowid
+
+            'sql = "exec " + EventBindings(EventBindingTypes.LOAD_ITEM) + " @ITEMID ='" + workflowid + "'"
+
+            'resp = dl.SelectData(sql)
+            'If resp.Success Then
+            '    mapFromDB(resp.GetData(0))
+            'Else
+            '    Throw New Exception("Error loading workflow")
+            'End If
 
         End Sub
 
@@ -94,10 +97,6 @@ Namespace App_Code.WorkflowFramework
             Return New WorkflowCls(id)
         End Function
 
-
-        Public Overrides Function GetItem(id As String) As WorkflowCls
-            Return New WorkflowCls(id)
-        End Function
 
 
     End Class

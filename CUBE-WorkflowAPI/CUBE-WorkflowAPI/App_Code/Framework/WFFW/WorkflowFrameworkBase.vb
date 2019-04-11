@@ -1,11 +1,12 @@
 ﻿
 Imports System.Data
+Imports CUBE_WorkflowAPI.App_Code.DB
 Imports CUBE_WorkflowAPI.App_Code.Framework.AutoMapper
 
 Namespace App_Code.Framework.WFFW
     Public MustInherit Class WorkflowFrameworkBase(Of T) : Inherits AutoMapperCls : Implements IActionContext(Of T), IDefaultPropProvider
 
-        Protected Eventbindings As New Dictionary(Of String, String)
+        Protected EventBindings As New Dictionary(Of EventBindingTypes, String)
         Protected _nm As String
         Protected _id As String
 
@@ -56,11 +57,8 @@ Namespace App_Code.Framework.WFFW
                     Eventbindings.Add(r("event"), r("sp"))
                 Next
             Else
-
+                Throw New Exception("Event bindings not found for " + TypeName)
             End If
-
-
-
         End Sub
 
 
@@ -68,7 +66,7 @@ Namespace App_Code.Framework.WFFW
             Dim sql As String
             Dim dl As New DataLayer(WORKFLOWDB)
             Dim lst As New Dictionary(Of String, String)
-            sql = "exec " + Eventbindings("init") + " @userid ='" + UserID + "'"
+            sql = "exec " + EventBindings(EventBindingTypes.INIT) + " @userid ='" + UserID + "'"
 
             Dim resp = dl.SelectData(sql)
 
@@ -76,14 +74,39 @@ Namespace App_Code.Framework.WFFW
                 For Each row As DataRow In resp.GetData(0).Rows
                     lst.Add(row(0), row(1))
                 Next
-
+            Else
+                Throw New Exception("Init SP not found for " + TypeName)
             End If
 
 
             Return lst
         End Function
+        Public Function LoadItem(itemID As String) As T
+            Dim sql As String
+            Dim dl As New DataLayer(WORKFLOWDB)
+            Dim resp As SelectResponse
+            _id = itemID
 
-        Public MustOverride Function GetItem(id As String) As T Implements IActionContext(Of T).GetItem
+            sql = "exec " + EventBindings(EventBindingTypes.LOAD_ITEM) + " @ITEMID ='" + itemID + "'"
+
+            resp = dl.SelectData(sql)
+            If resp.Success Then
+                mapFromDB(resp.GetData(0))
+            Else
+                Throw New Exception("Error loading workflow")
+            End If
+        End Function
+
+        Public Function Save() As Boolean Implements IActionContext(Of T).save
+            Dim params = map2DB()
+            Dim dl As New DataLayer(WORKFLOWDB)
+            Dim spName As String = EventBindings(EventBindingTypes.SAVE)
+            Dim resp As SelectResponse
+
+            resp = dl.ExecuteSP(spName, CommandType.StoredProcedure, params)
+
+            Return resp.Success
+        End Function
 
     End Class
 End Namespace
