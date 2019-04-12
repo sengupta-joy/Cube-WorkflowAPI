@@ -1,12 +1,16 @@
 ﻿
+Imports System
+Imports System.Collections.Generic
 Imports System.Data
+Imports System.Web
 Imports CUBE_WorkflowAPI.App_Code.DB
 Imports CUBE_WorkflowAPI.App_Code.Framework.AutoMapper
 
 Namespace App_Code.Framework.WFFW
+    <Serializable>
     Public MustInherit Class WorkflowFrameworkBase(Of T) : Inherits AutoMapperCls : Implements IActionContext(Of T), IDefaultPropProvider
 
-        Protected EventBindings As New Dictionary(Of EventBindingTypes, String)
+        Protected EventBindings As New EventBinder()
         Protected _nm As String
         Protected _id As String
 
@@ -34,19 +38,22 @@ Namespace App_Code.Framework.WFFW
         End Property
 
         <App_Code.DB.SQLParam("ID")>
-        Public ReadOnly Property ID As String Implements IDefaultPropProvider.Id
+        Public Property ID As String Implements IDefaultPropProvider.Id
             Get
                 Return _id
             End Get
+            Set(value As String)
+                _id = value
+            End Set
         End Property
 #End Region
 
 
         Public Sub New()
-            init()
+            Init()
         End Sub
 
-        Public Sub init()
+        Private Sub Init()
             Dim sql As String = "EXEC USP_FRAMEWORK_INIT @OBJECT_NAME='" + TypeName + "'"
             Dim dl As New DataLayer(WORKFLOWDB)
 
@@ -54,7 +61,7 @@ Namespace App_Code.Framework.WFFW
 
             If resp.Success And resp.HasTable Then
                 For Each r As DataRow In resp.GetData(0).Rows
-                    Eventbindings.Add(r("event"), r("sp"))
+                    EventBindings.Add(r("event"), r("sp"))
                 Next
             Else
                 Throw New Exception("Event bindings not found for " + TypeName)
@@ -66,7 +73,7 @@ Namespace App_Code.Framework.WFFW
             Dim sql As String
             Dim dl As New DataLayer(WORKFLOWDB)
             Dim lst As New Dictionary(Of String, String)
-            sql = "exec " + EventBindings(EventBindingTypes.INIT) + " @userid ='" + UserID + "'"
+            sql = "exec " + EventBindings.getEvent(EventBindingTypes.INIT) + " @userid ='" + UserID + "'"
 
             Dim resp = dl.SelectData(sql)
 
@@ -85,9 +92,9 @@ Namespace App_Code.Framework.WFFW
             Dim sql As String
             Dim dl As New DataLayer(WORKFLOWDB)
             Dim resp As SelectResponse
-            _id = itemID
+            '_id = itemID
 
-            sql = "exec " + EventBindings(EventBindingTypes.LOAD_ITEM) + " @ITEMID ='" + itemID + "'"
+            sql = "exec " + EventBindings.getEvent(EventBindingTypes.LOAD_ITEM) + " @ITEMID ='" + itemID + "'"
 
             resp = dl.SelectData(sql)
             If resp.Success Then
@@ -97,10 +104,10 @@ Namespace App_Code.Framework.WFFW
             End If
         End Function
 
-        Public Function Save() As Boolean Implements IActionContext(Of T).save
+        Public Function Save() As Boolean Implements IActionContext(Of T).Save
             Dim params = map2DB()
             Dim dl As New DataLayer(WORKFLOWDB)
-            Dim spName As String = EventBindings(EventBindingTypes.SAVE)
+            Dim spName As String = EventBindings.getEvent(EventBindingTypes.SAVE)
             Dim resp As SelectResponse
 
             resp = dl.ExecuteSP(spName, CommandType.StoredProcedure, params)

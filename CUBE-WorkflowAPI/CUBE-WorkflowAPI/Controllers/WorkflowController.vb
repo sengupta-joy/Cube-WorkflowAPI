@@ -17,7 +17,7 @@ Namespace Controllers
 
         ' GET: api/Workflow/5
         Public Function GetValue(ByVal id As Integer) As WorkflowCls
-            Return WorkflowCls.getIte(id)
+            Return WorkflowCls.getItem(id)
         End Function
 
         ' POST: api/Workflow

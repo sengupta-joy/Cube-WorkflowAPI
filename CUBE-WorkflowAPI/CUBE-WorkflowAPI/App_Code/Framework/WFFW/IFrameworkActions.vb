@@ -1,9 +1,11 @@
-﻿Namespace App_Code.Framework.WFFW
+﻿Imports System.Collections.Generic
+
+Namespace App_Code.Framework.WFFW
     Public Interface IActionContext(Of T)
 
 
 
         Function GetItems() As Dictionary(Of String, String)
-        Function save() As Boolean
+        Function Save() As Boolean
     End Interface
 End Namespace

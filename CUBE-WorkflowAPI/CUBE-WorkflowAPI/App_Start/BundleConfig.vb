@@ -15,6 +15,9 @@ Public Module BundleConfig
         bundles.Add(New ScriptBundle("~/bundles/bootstrap").Include(
                     "~/Scripts/bootstrap.js"))
 
+        bundles.Add(New ScriptBundle("~/bundles/jqGrid").Include(
+                    "~/Scripts/JQGrid.js"))
+
         bundles.Add(New StyleBundle("~/Content/css").Include(
                     "~/Content/bootstrap.css",
                     "~/Content/site.css"))

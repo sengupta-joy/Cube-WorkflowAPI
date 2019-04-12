@@ -7,16 +7,16 @@ Imports CUBE_WorkflowAPI.App_Code.DB
 
 
 Namespace App_Code.Framework.AutoMapper
-    Public MustInherit Class AutoMapperCls : Implements iMapper
+    Public MustInherit Class AutoMapperCls : Implements iMapperProvider
 
-        Protected Sub mapFromDB(Data As DataTable) Implements iMapper.map
+        Protected Sub mapFromDB(Data As DataTable) Implements iMapperProvider.mapFromDB
             MapDataFromDB(Data, Me)
         End Sub
         Protected Function map2DB() As List(Of SqlClient.SqlParameter)
             Return MapDataToDB(Me)
         End Function
 
-        Private Sub MapDataFromDB(dt As DataTable, ByRef obj As iMapper)
+        Private Sub MapDataFromDB(dt As DataTable, ByRef obj As iMapperProvider)
             Dim paramName = ""
             Dim paramType = ""
             Dim paramValue = ""
@@ -44,9 +44,9 @@ Namespace App_Code.Framework.AutoMapper
             Next
         End Sub
 
-        Private Sub setValue(p As PropertyInfo, obj As iMapper, paramValue As Object, paramType As ParamTypes)
+        Private Sub setValue(p As PropertyInfo, obj As iMapperProvider, paramValue As Object, paramType As ParamTypes)
             If paramType = ParamTypes.BooleanType Then
-                p.SetValue(obj, Boolean.Parse(paramValue).ToString())
+                p.SetValue(obj, IIf(paramValue.ToString().ToUpper() = "TRUE", True, False))
             ElseIf paramType = ParamTypes.IntType Then
                 p.SetValue(obj, Integer.Parse(paramValue))
             ElseIf paramType = ParamTypes.DateType Then
@@ -54,7 +54,7 @@ Namespace App_Code.Framework.AutoMapper
             End If
         End Sub
 
-        Private Function MapDataToDB(obj As iMapper) As List(Of SqlClient.SqlParameter)
+        Private Function MapDataToDB(obj As iMapperProvider) As List(Of SqlClient.SqlParameter)
             Dim SQLParams As New List(Of SqlClient.SqlParameter)
 
             For Each p As PropertyInfo In obj.GetType().GetProperties().ToList()

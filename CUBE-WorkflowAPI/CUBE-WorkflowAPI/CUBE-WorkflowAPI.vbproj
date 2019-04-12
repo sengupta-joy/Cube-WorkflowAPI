@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\AppConstant.vb" />
+    <Compile Include="App_Code\Framework\WFFW\EventBinder.vb" />
     <Compile Include="App_Code\Framework\WFFW\EventBindingTypes.vb" />
     <Compile Include="App_Code\LoginCls.vb" />
     <Compile Include="App_Code\Framework\AutoMapper\AutoMapper.vb" />
@@ -175,11 +176,12 @@
     <Compile Include="App_Code\DB\SelectResponse.vb" />
     <Compile Include="App_Code\DB\SQLParam.vb" />
     <Compile Include="App_Code\UserInfo.vb" />
-    <Compile Include="App_Code\Framework\AutoMapper\iMapper.vb" />
+    <Compile Include="App_Code\Framework\AutoMapper\iMapperProvider.vb" />
     <Compile Include="App_Code\Framework\AutoMapper\MapperEnum.vb" />
     <Compile Include="App_Code\Framework\WFFW\IDefaultPropProvider.vb" />
     <Compile Include="App_Code\Framework\WFFW\IFrameworkActions.vb" />
     <Compile Include="App_Code\Framework\WFFW\WorkflowFrameworkBase.vb" />
+    <Compile Include="App_Code\WorkflowClasses\Entity.vb" />
     <Compile Include="App_Code\WorkflowClasses\WorkflowState.vb" />
     <Compile Include="App_Code\WorkflowClasses\WorkflowStateCondition.vb" />
     <Compile Include="App_Start\BundleConfig.vb" />
@@ -214,6 +216,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.vb" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.vb" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.vb" />
+    <Compile Include="Controllers\entityController.vb" />
     <Compile Include="Controllers\login.vb" />
     <Compile Include="App_Code\WorkflowClasses\WorkflowCls.vb" />
     <Compile Include="Controllers\WorkflowController.vb" />
@@ -279,6 +282,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.vbhtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.vbhtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.vbhtml" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -290,6 +294,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\JQGrid.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -322,6 +327,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

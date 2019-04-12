@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CUBE_WorkflowAPI.App_Code.WorkflowFramework.WorkflowCls">
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAIABACAAAAAACAAIgABAABAAAAAE=</HashCode>
+      <FileName>App_Code\WorkflowClasses\WorkflowCls.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CUBE_WorkflowAPI.App_Code.Framework.WFFW.WorkflowFrameworkBase(Of T)">
+    <Position X="3.5" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAgAAAAABAAAwAAAAAQhAAAAACAAGAAAA=</HashCode>
+      <FileName>App_Code\Framework\WFFW\WorkflowFrameworkBase.vb</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CUBE_WorkflowAPI.App_Code.Framework.AutoMapper.AutoMapperCls">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAgAAAAAAAAAIAAEABAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Framework\AutoMapper\AutoMapper.vb</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CUBE_WorkflowAPI.UserInfo">
+    <Position X="2.75" Y="7.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AIAIAIAAQCAgAAAAYABAIAAAAQAAAgggAACABAAEAAE=</HashCode>
+      <FileName>App_Code\UserInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CUBE_WorkflowAPI.App_Code.WorkflowFramework.WorkflowState">
+    <Position X="5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>App_Code\WorkflowClasses\WorkflowState.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CUBE_WorkflowAPI.App_Code.WorkflowFramework.WorkflowStateCondition">
+    <Position X="7.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\WorkflowClasses\WorkflowStateCondition.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CUBE_WorkflowAPI.App_Code.Framework.WFFW.IActionContext(Of T)" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Framework\WFFW\IFrameworkActions.vb</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CUBE_WorkflowAPI.App_Code.Framework.WFFW.IDefaultPropProvider" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Framework\WFFW\IDefaultPropProvider.vb</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CUBE_WorkflowAPI.App_Code.Framework.AutoMapper.iMapperProvider" Collapsed="true">
+    <Position X="9.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Framework\AutoMapper\iMapperProvider.vb</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="CUBE_WorkflowAPI.App_Code.Framework.WFFW.EventBindingTypes" Collapsed="true">
+    <Position X="9.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>App_Code\Framework\WFFW\EventBindingTypes.vb</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

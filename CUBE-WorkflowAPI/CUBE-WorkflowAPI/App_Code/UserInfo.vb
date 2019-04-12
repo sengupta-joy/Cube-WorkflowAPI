@@ -5,6 +5,8 @@ Imports System.Collections.Generic
 Imports CUBE_WorkflowAPI.App_Code.Framework.WFFW
 Imports CUBE_WorkflowAPI.App_Code.Framework.AutoMapper
 Imports CUBE_WorkflowAPI.App_Code.DB
+Imports System.Web
+Imports CUBE_WorkflowAPI.App_Code.WorkflowFramework
 
 <Serializable>
 Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
@@ -172,7 +174,4 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
     End Function
 
 
-End Class
-
-Friend Class Entity
 End Class

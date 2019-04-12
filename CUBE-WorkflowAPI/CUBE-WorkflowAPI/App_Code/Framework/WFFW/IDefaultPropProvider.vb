@@ -3,7 +3,7 @@
 
 
         Property Name As String
-        ReadOnly Property Id As String
+        Property Id As String
 
     End Interface
 End Namespace
