@@ -8,9 +8,6 @@ Public Module AppConstant
     Public Const WORKFLOWDB As String = "WORKFLOWDB"
 
 
-
-
-
     <Extension>
     Public Function isNull(obj As Object, defaultValue As Object) As Object
         If obj Is Nothing Then

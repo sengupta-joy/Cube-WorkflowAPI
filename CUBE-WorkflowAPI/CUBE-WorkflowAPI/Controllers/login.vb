@@ -16,7 +16,7 @@ Public Class logincontroller
         Dim resp = UserInfo.validateLogin(id, password)
 
         If resp Is Nothing Then
-            HttpContext.Current.Response.Write("{'message':'invalid login'}")
+            ActionContext.Response = New System.Net.Http.HttpResponseMessage(HttpStatusCode.Unauthorized)
         Else
             Return resp
         End If
