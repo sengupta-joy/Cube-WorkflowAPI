@@ -15,6 +15,7 @@ Namespace App_Code.WorkflowFramework
         Private _comp As String
         Private _crtdby As String
         Private _crtdon As Date
+        Private _initState As String
 
 #Region "Properties"
         <SQLParam("Active", ParamTypes.BooleanType)>
@@ -66,6 +67,18 @@ Namespace App_Code.WorkflowFramework
                 _crtdon = value
             End Set
         End Property
+
+        Public ReadOnly Property InitialState As String
+            Get
+                Return _initState
+            End Get
+        End Property
+
+        Public ReadOnly Property WorkFlowState As List(Of WorkflowState)
+            Get
+
+            End Get
+        End Property
 #End Region
 
 
@@ -86,6 +99,12 @@ Namespace App_Code.WorkflowFramework
             Return obj
         End Function
 
+        Public Function AddNewRequest() As WorkflowRequest
+            Dim req As New WorkflowRequest()
+            req.Creator = UserID
+            req.WorklfowID = Me.ID
+            req.WorkflowStateID = Me.InitialState
 
+        End Function
     End Class
 End Namespace
