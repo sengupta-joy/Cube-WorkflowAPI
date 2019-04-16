@@ -182,6 +182,8 @@
     <Compile Include="App_Code\Framework\WFFW\IFrameworkActions.vb" />
     <Compile Include="App_Code\Framework\WFFW\WorkflowFrameworkBase.vb" />
     <Compile Include="App_Code\WorkflowClasses\Entity.vb" />
+    <Compile Include="App_Code\WorkflowClasses\IProcessProvider.vb" />
+    <Compile Include="App_Code\WorkflowClasses\Processes\MoveStateProcess.vb" />
     <Compile Include="App_Code\WorkflowClasses\WorkflowCondition.vb" />
     <Compile Include="App_Code\WorkflowClasses\WorkFlowRequest.vb" />
     <Compile Include="App_Code\WorkflowClasses\WorkflowState.vb" />

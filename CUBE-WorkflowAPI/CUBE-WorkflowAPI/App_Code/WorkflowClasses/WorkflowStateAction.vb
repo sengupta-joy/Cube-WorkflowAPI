@@ -11,14 +11,19 @@ Namespace App_Code.WorkflowFramework
             End Set
         End Property
 
-        Public ReadOnly Property Destination As List(Of WorkflowDestination)
+        Public Property Processes As List(Of IProcessProvider)
             Get
-                Return Nothing
+
             End Get
+            Set(value As List(Of IProcessProvider))
+
+            End Set
         End Property
 
         Public Function executeAction() As Boolean
-
+            For Each p In Me.Processes
+                p.executeProcess()
+            Next
         End Function
     End Class
 End Namespace

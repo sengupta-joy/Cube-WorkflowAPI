@@ -55,7 +55,7 @@
   <Class Name="CUBE_WorkflowAPI.App_Code.WorkflowFramework.WorkflowDestination">
     <Position X="13.75" Y="7.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAQAAAAAAAABAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Code\WorkflowClasses\WorkflowDestination.vb</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -82,7 +82,7 @@
   <Class Name="CUBE_WorkflowAPI.App_Code.WorkflowFramework.WorkflowCondition">
     <Position X="16.75" Y="7.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Code\WorkflowClasses\WorkflowCondition.vb</FileName>
     </TypeIdentifier>
   </Class>

@@ -10,7 +10,12 @@ Namespace App_Code.WorkflowFramework
         Public Property Conditions As List(Of WorkflowCondition)
 
         Public Property StateToMoveOnSuccess As WorkflowState
-        Public Property StateToMoveOnFail As WorkflowState
+
+        Public Function execute() As Boolean
+            If Not Conditions.Select(Function(x) Not x.isValid()).ToList().Count() > 0 Then
+                ' move state
+            End If
+        End Function
 
     End Class
 End Namespace
