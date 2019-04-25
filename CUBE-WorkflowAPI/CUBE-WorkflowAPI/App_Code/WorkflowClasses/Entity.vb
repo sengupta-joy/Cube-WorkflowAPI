@@ -6,11 +6,11 @@ Imports CUBE_WorkflowAPI.App_Code.Framework.WFFW
 Namespace App_Code.WorkflowFramework
     Public Class Entity : Inherits WorkflowFrameworkBase(Of Entity)
 
-
-
         Friend Sub New()
             LoadItem(UserID)
         End Sub
+
+
 
         Public Shared Function getItem() As Entity
             Return New Entity()

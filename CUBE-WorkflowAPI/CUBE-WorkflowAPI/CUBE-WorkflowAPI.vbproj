@@ -185,6 +185,7 @@
     <Compile Include="App_Code\WorkflowClasses\IConfirmationProvider.vb" />
     <Compile Include="App_Code\WorkflowClasses\IProcessProvider.vb" />
     <Compile Include="App_Code\WorkflowClasses\IValidationProvider.vb" />
+    <Compile Include="App_Code\WorkflowClasses\MenuCls.vb" />
     <Compile Include="App_Code\WorkflowClasses\Processes\MoveStateProcess.vb" />
     <Compile Include="App_Code\WorkflowClasses\WorkflowCondition.vb" />
     <Compile Include="App_Code\WorkflowClasses\WorkFlowRequest.vb" />
@@ -226,6 +227,7 @@
     <Compile Include="Controllers\entityController.vb" />
     <Compile Include="Controllers\login.vb" />
     <Compile Include="App_Code\WorkflowClasses\WorkflowCls.vb" />
+    <Compile Include="Controllers\MenuController.vb" />
     <Compile Include="Controllers\WorkflowController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
