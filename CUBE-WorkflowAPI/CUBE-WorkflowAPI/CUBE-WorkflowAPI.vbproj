@@ -167,6 +167,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\AppConstant.vb" />
+    <Compile Include="App_Code\Branch.vb" />
+    <Compile Include="App_Code\Designation.vb" />
     <Compile Include="App_Code\Framework\WFFW\EventBinder.vb" />
     <Compile Include="App_Code\Framework\WFFW\EventBindingTypes.vb" />
     <Compile Include="App_Code\LoginCls.vb" />
@@ -224,10 +226,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.vb" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.vb" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.vb" />
+    <Compile Include="Controllers\branchController.vb" />
+    <Compile Include="Controllers\designationController.vb" />
     <Compile Include="Controllers\entityController.vb" />
     <Compile Include="Controllers\login.vb" />
     <Compile Include="App_Code\WorkflowClasses\WorkflowCls.vb" />
     <Compile Include="Controllers\MenuController.vb" />
+    <Compile Include="Controllers\usersController.vb" />
     <Compile Include="Controllers\WorkflowController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
