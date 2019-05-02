@@ -19,8 +19,10 @@ Namespace Controllers
         End Function
 
         ' POST: api/users
-        Public Sub PostValue(<FromBody()> ByVal value As Object)
-
+        <HttpPost>
+        Public Sub PostValue(ByVal value As Object)
+            Dim i As Integer
+            i = 5
         End Sub
 
         ' PUT: api/users/5

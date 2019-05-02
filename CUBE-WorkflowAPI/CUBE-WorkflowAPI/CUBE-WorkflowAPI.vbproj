@@ -168,6 +168,7 @@
   <ItemGroup>
     <Compile Include="App_Code\AppConstant.vb" />
     <Compile Include="App_Code\Branch.vb" />
+    <Compile Include="App_Code\Depertment.vb" />
     <Compile Include="App_Code\Designation.vb" />
     <Compile Include="App_Code\Framework\WFFW\EventBinder.vb" />
     <Compile Include="App_Code\Framework\WFFW\EventBindingTypes.vb" />
@@ -227,6 +228,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.vb" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.vb" />
     <Compile Include="Controllers\branchController.vb" />
+    <Compile Include="Controllers\depertmentController.vb" />
     <Compile Include="Controllers\designationController.vb" />
     <Compile Include="Controllers\entityController.vb" />
     <Compile Include="Controllers\login.vb" />
