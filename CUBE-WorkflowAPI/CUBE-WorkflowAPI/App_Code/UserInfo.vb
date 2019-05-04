@@ -20,6 +20,14 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
     Private _bs As String
     Private _comp As String
 
+    Private _about As String
+    Private _phone As String
+    Private _address As String
+    Private _city As String
+    Private _country As String
+    Private _groups As New Dictionary(Of String, String)
+    Private _subs As New Dictionary(Of String, String)
+
 
 #Region "Properties"
     <SQLParam("Email")>
@@ -40,9 +48,6 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
             _actv = value
         End Set
     End Property
-
-
-
     <SQLParam("Designation")>
     Public Property Designation As String
         Get
@@ -88,28 +93,111 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
             _comp = value
         End Set
     End Property
+    <SQLParam("About")>
+    Public Property About As String
+        Get
+            Return _about
+        End Get
+        Set(value As String)
+            _about = value
+        End Set
+    End Property
+    <SQLParam("Phone")>
+    Public Property Phone As String
+        Get
+            Return _phone
+        End Get
+        Set(value As String)
+            _phone = value
+        End Set
+    End Property
+    <SQLParam("Address")>
+    Public Property Address As String
+        Get
+            Return _address
+        End Get
+        Set(value As String)
+            _address = value
+        End Set
+    End Property
+    <SQLParam("City")>
+    Public Property City As String
+        Get
+            Return _city
+        End Get
+        Set(value As String)
+            _city = value
+        End Set
+    End Property
+    <SQLParam("Country")>
+    Public Property Country As String
+        Get
+            Return _country
+        End Get
+        Set(value As String)
+            _country = value
+        End Set
+    End Property
+
+    Public ReadOnly Property Groups As Dictionary(Of String, String)
+        Get
+            Return _groups
+        End Get
+    End Property
+    Public ReadOnly Property SubOrdinates As Dictionary(Of String, String)
+        Get
+            Return _subs
+        End Get
+    End Property
+
 #End Region
 
 
     Private Sub New(uid As String)
         _id = uid
-        loadUser(uid)
+        LoadItem(uid)
+        loadGroup(Me)
+        loadChildren(Me)
     End Sub
+
+
+
     Private Sub New(company As Entity)
 
     End Sub
 
-    Private Sub loadUser(uid As String)
+    Private Sub loadGroup(userInfo As UserInfo)
         Dim dl As New DataLayer(WORKFLOWDB)
+        Dim sql As String
 
-        Dim resp = dl.SelectData("exec USP_USERS_GET @USERID='" + uid + "'")
+
+        sql = "exec USP_GET_USER_GROUPS @USERID='" + userInfo.ID + "'"
+        Dim resp = dl.SelectData(sql)
+
         If resp.Success Then
-            'AutoMapper.Mapper.MapDataFromDB(resp.Data.Tables(0), Me)
-            mapFromDB(resp.GetData(0))
-        Else
-            Throw New Exception("Error loading user")
+            If resp.HasTable Then
+                For Each row In resp.GetData(0).Rows
+                    userInfo.Groups.Add(row("id"), row("Name"))
+                Next
+            End If
         End If
 
+    End Sub
+    Private Sub loadChildren(userInfo As UserInfo)
+        Dim dl As New DataLayer(WORKFLOWDB)
+        Dim sql As String
+
+
+        sql = "SELECT * FROM DBO.UFN_GETCHILDREN('" + userInfo.ID + "')"
+        Dim resp = dl.SelectData(sql)
+
+        If resp.Success Then
+            If resp.HasTable Then
+                For Each row In resp.GetData(0).Rows
+                    userInfo.SubOrdinates.Add(row("id"), row("Name"))
+                Next
+            End If
+        End If
     End Sub
 
     Friend Shared Function getItem(id As String) As UserInfo
@@ -172,6 +260,8 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
 
         Return False
     End Function
+
+
 
     Friend Shared Function getItems() As Dictionary(Of String, String)
         Dim SQL As String

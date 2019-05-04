@@ -26,6 +26,7 @@ Namespace App_Code.Framework.AutoMapper
                     If TypeOf attr Is SQLParam Then
                         paramName = DirectCast(attr, SQLParam).ParameterName
                         paramType = DirectCast(attr, SQLParam).ParameterType
+                        paramValue = ""
                         Try
                             paramValue = dt.Rows(0)(DirectCast(attr, SQLParam).ParameterName)
                         Catch ex As Exception
