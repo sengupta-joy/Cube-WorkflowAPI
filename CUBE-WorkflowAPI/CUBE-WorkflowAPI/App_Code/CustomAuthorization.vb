@@ -32,12 +32,12 @@ Public Class CustomAuthorization : Inherits System.Web.Http.AuthorizeAttribute :
             Return True
         End If
 
-        Dim key = HttpContext.Current.Request.Headers("token")
-        If key Is Nothing Then
+        Dim token = HttpContext.Current.Request.Headers("token")
+        If token Is Nothing Then
             Return False
         End If
 
-        If UserInfo.isValidKey(key) Then
+        If UserInfo.isValidKey(token) Then
             Return True
         End If
 

@@ -12,6 +12,10 @@ Public Class CrossDomainHandler : Inherits DelegatingHandler
     Const AccessControlAllowMethods As String = "Access-Control-Allow-Methods"
     Const AccessControlAllowHeaders As String = "Access-Control-Allow-Headers"
 
+    Public Sub New()
+        MyBase.New()
+    End Sub
+
 
     Protected Overrides Function SendAsync(request As HttpRequestMessage, cancellationToken As CancellationToken) As Task(Of HttpResponseMessage)
         Dim isCorsRequest = request.Headers.Contains(Origin)
