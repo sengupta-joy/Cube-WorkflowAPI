@@ -3,6 +3,7 @@ Imports System.Collections.Generic
 Imports System.Linq
 Imports System.Net.Http.Headers
 Imports System.Web.Http
+Imports System.Web.Http.Cors
 Imports Newtonsoft.Json.Serialization
 
 Public Module WebApiConfig
@@ -28,6 +29,9 @@ Public Module WebApiConfig
         'config.Formatters.Insert(0, jsonP)
         'config.MessageHandlers.Add(New CrossDomainHandler())
 
+        'CORS
+        Dim corsAttr = New EnableCorsAttribute("http://localhost:50187", "*", "*")
+        config.EnableCors(corsAttr)
 
     End Sub
 End Module
