@@ -30,7 +30,10 @@ Public Module WebApiConfig
         'config.MessageHandlers.Add(New CrossDomainHandler())
 
         'CORS
-        Dim corsAttr = New EnableCorsAttribute("http://localhost:50187", "*", "*")
+        Dim corsAttr = New EnableCorsAttribute("*", "*", "*")
+        corsAttr.Headers.Add("*")
+        corsAttr.Origins.Add("http://localhost:50187")
+        corsAttr.Methods.Add("*")
         config.EnableCors(corsAttr)
 
     End Sub

@@ -2,8 +2,11 @@
 Imports System.Net.Http
 Imports System.Net.Http.Headers
 Imports System.Web.Http
+Imports System.Web.Http.Cors
 Imports Newtonsoft.Json
 
+
+'<EnableCors("*", "*", "*")>
 <CustomAuthorization>
 Public Class logincontroller
     Inherits ApiController
