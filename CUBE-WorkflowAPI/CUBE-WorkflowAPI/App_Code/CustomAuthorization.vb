@@ -1,4 +1,5 @@
 ﻿Imports System.Net
+Imports System.Reflection
 Imports System.Web.Http.Controllers
 Imports System.Web.Http.Filters
 Imports System.Web.Mvc
@@ -7,6 +8,22 @@ Imports System.Web.Mvc.Filters
 Public Class CustomAuthorization : Inherits System.Web.Http.AuthorizeAttribute : Implements System.Web.Mvc.IAuthorizationFilter
 
     Public Overrides Sub OnAuthorization(actionContext As HttpActionContext)
+
+        Dim ActionMethod As System.Web.Http.Controllers.ReflectedHttpActionDescriptor = DirectCast(actionContext.ActionDescriptor, System.Web.Http.Controllers.ReflectedHttpActionDescriptor)
+        'GetCustomAttributes(False)
+
+        For Each attr As CustomAttributeData In ActionMethod.MethodInfo.CustomAttributes
+
+            If attr.AttributeType.Name = "AllowAnonymousAttribute" Then
+                Return
+            End If
+
+            'If TypeOf attr Is AllowAnonymousAttribute Then
+            '    Return
+            'End If
+        Next
+
+
         If Not authorized(actionContext) Then
             actionContext.Response = New System.Net.Http.HttpResponseMessage(HttpStatusCode.Unauthorized)
         End If

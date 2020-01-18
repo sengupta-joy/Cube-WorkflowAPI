@@ -15,6 +15,7 @@ Public Class logincontroller
 
     ' GET api/<controller>/5
     <HttpGet>
+    <AllowAnonymous>
     Public Function GetValue(ByVal id As String, password As String) As LoginCls
         Dim resp = UserInfo.validateLogin(id, password)
 
