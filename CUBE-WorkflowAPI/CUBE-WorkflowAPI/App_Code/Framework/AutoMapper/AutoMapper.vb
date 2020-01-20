@@ -50,6 +50,10 @@ Namespace App_Code.Framework.AutoMapper
             If paramType = ParamTypes.BooleanType Then
                 p.SetValue(obj, IIf(paramValue.ToString().ToUpper() = "TRUE", True, False))
             ElseIf paramType = ParamTypes.IntType Then
+                If paramValue = "" Then
+                    p.SetValue(obj, 0)
+                    Return
+                End If
                 p.SetValue(obj, Integer.Parse(paramValue))
             ElseIf paramType = ParamTypes.DateType Then
                 p.SetValue(obj, Date.Parse(paramValue))

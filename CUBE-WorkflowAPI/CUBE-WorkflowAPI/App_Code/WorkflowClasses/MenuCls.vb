@@ -11,6 +11,7 @@ Namespace App_Code.WorkflowFramework
         Private _prnt As String
         Private _address As String
         Private _order As Integer
+        Private _mt As Integer
 
         <SQLParam("MENUPARENT")>
         Public Property Parent As String
@@ -41,7 +42,15 @@ Namespace App_Code.WorkflowFramework
                 _order = value
             End Set
         End Property
-
+        <SQLParam("MENUTYPE", ParamTypes.IntType)>
+        Public Property MenuType As Integer
+            Get
+                Return _mt
+            End Get
+            Set(value As Integer)
+                _mt = value
+            End Set
+        End Property
 
         Friend Sub New()
 
