@@ -269,7 +269,7 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
         Dim dl As New DataLayer(WORKFLOWDB)
         Dim lst As New Dictionary(Of String, String)()
 
-        SQL = "SELECT * FROM [dbo].[FM_LOAD_GET_USERS] ('" + user + "')"
+        SQL = "SELECT * FROM [dbo].[FM_LOAD_GET_USERS] ('" + user + "') order by name"
         Dim rsp = dl.SelectData(SQL)
 
         If rsp.Success Then
