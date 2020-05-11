@@ -4,7 +4,13 @@
 <Serializable>
 Public Class Designation : Inherits WorkflowFrameworkBase(Of Designation)
 
+    Shared Sub New()
 
+    End Sub
+
+    Private Sub New(_id As String)
+        MyBase.ID = _id
+    End Sub
 
     Friend Shared Function getItems() As Dictionary(Of String, String)
         Dim SQL As String
@@ -24,4 +30,10 @@ Public Class Designation : Inherits WorkflowFrameworkBase(Of Designation)
         Return lst
     End Function
 
+    Friend Shared Function getItem(id As String) As Designation
+        Dim x = New Designation(id)
+        x.LoadItem()
+
+        Return x
+    End Function
 End Class

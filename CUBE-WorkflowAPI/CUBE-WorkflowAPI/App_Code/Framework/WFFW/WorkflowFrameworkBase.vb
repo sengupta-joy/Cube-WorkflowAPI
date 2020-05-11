@@ -10,7 +10,7 @@ Namespace App_Code.Framework.WFFW
     <Serializable>
     Public MustInherit Class WorkflowFrameworkBase(Of T) : Inherits AutoMapperCls : Implements IActionContext(Of T), IDefaultPropProvider
 
-        Protected EventBindings As New EventBinder()
+        Shared EventBindings As New EventBinder()
         Protected _nm As String
         Protected _id As String
 
@@ -48,24 +48,38 @@ Namespace App_Code.Framework.WFFW
         End Property
 #End Region
 
-
-        Public Sub New()
-            Init()
-        End Sub
-
-        Private Sub Init()
-            Dim sql As String = "EXEC USP_FRAMEWORK_INIT @OBJECT_NAME='" + TypeName + "'"
+        Shared Sub New()
+            Dim sql As String = "EXEC USP_FRAMEWORK_INIT"
             Dim dl As New DataLayer(WORKFLOWDB)
 
             Dim resp = dl.SelectData(sql)
 
             If resp.Success And resp.HasTable Then
                 For Each r As DataRow In resp.GetData(0).Rows
-                    EventBindings.Add(r("event"), r("sp"))
+                    EventBindings.add(r("event"), r("sp"), r("objName"))
                 Next
             Else
-                Throw New Exception("Event bindings not found for " + TypeName)
+                Throw New Exception("Event bindings not found")
             End If
+        End Sub
+
+        Public Sub New()
+            Init()
+        End Sub
+
+        Private Sub Init()
+            'Dim sql As String = "EXEC USP_FRAMEWORK_INIT"
+            'Dim dl As New DataLayer(WORKFLOWDB)
+
+            'Dim resp = dl.SelectData(sql)
+
+            'If resp.Success And resp.HasTable Then
+            '    For Each r As DataRow In resp.GetData(0).Rows
+            '        EventBindings.Add(r("event"), r("sp"))
+            '    Next
+            'Else
+            '    Throw New Exception("Event bindings not found for " + TypeName)
+            'End If
         End Sub
 
 
@@ -73,7 +87,7 @@ Namespace App_Code.Framework.WFFW
             Dim sql As String
             Dim dl As New DataLayer(WORKFLOWDB)
             Dim lst As New Dictionary(Of String, String)
-            sql = "exec " + EventBindings.getEvent(EventBindingTypes.INIT) + " @userid ='" + UserID + "'"
+            sql = "exec " + EventBindings.getEvent(EventBindingTypes.INIT, Me.TypeName) + " @userid ='" + UserID + "'"
 
             Dim resp = dl.SelectData(sql)
 
@@ -94,7 +108,7 @@ Namespace App_Code.Framework.WFFW
             Dim resp As SelectResponse
             '_id = itemID
 
-            sql = "exec " + EventBindings.getEvent(EventBindingTypes.LOAD_ITEM) + " @ITEMID ='" + itemID + "'"
+            sql = "exec " + EventBindings.getEvent(EventBindingTypes.LOAD_ITEM, Me.TypeName) + " @ITEMID ='" + itemID + "'"
 
             resp = dl.SelectData(sql)
             If resp.Success Then
@@ -103,16 +117,39 @@ Namespace App_Code.Framework.WFFW
                 Throw New Exception("Error loading workflow")
             End If
         End Function
+        Public Function LoadItem() As T
+            Dim sql As String
+            Dim dl As New DataLayer(WORKFLOWDB)
+            Dim resp As SelectResponse
+            '_id = itemID
+
+            sql = "exec " + EventBindings.getEvent(EventBindingTypes.LOAD_ITEM, Me.TypeName) + " @ITEMID ='" + ID + "'"
+
+            resp = dl.SelectData(sql)
+            If resp.Success Then
+                mapFromDB(resp.GetData(0))
+            Else
+                Throw New Exception("Error loading workflow")
+            End If
+
+
+        End Function
 
         Public Function Save() As Boolean Implements IActionContext(Of T).Save
             Dim params = map2DB()
             Dim dl As New DataLayer(WORKFLOWDB)
-            Dim spName As String = EventBindings.getEvent(EventBindingTypes.SAVE)
+            Dim spName As String = EventBindings.getEvent(EventBindingTypes.SAVE, Me.TypeName)
             Dim resp As SelectResponse
 
             resp = dl.ExecuteSP(spName, CommandType.StoredProcedure, params)
 
             Return resp.Success
+        End Function
+
+
+        Protected Function loadFormfield() As String
+            Dim x = Me.TypeName
+            Return x
         End Function
 
     End Class

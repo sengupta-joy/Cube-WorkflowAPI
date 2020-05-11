@@ -200,8 +200,13 @@ Public Class UserInfo : Inherits WorkflowFrameworkBase(Of UserInfo)
         End If
     End Sub
 
-    Friend Shared Function getItem(id As String) As UserInfo
-        Return New UserInfo(id)
+    Friend Shared Function getItem(id As String, Optional formOutput As Boolean = False) As UserInfo
+
+        Dim u = New UserInfo(id)
+        If formOutput Then
+            Dim x = u.loadFormfield()
+        End If
+        Return u
     End Function
     Friend Shared Function createItem(company As Entity) As UserInfo
         Return New UserInfo(company)

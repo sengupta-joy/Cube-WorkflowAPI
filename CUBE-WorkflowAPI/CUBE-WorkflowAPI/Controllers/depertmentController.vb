@@ -11,8 +11,10 @@ Namespace Controllers
         End Function
 
         ' GET: api/depertment/5
-        Public Function GetValue(ByVal id As Integer) As String
-            Return "value"
+        Public Function GetValue(ByVal id As String) As Depertment
+
+            Return Depertment.getItem(id)
+
         End Function
 
         ' POST: api/depertment

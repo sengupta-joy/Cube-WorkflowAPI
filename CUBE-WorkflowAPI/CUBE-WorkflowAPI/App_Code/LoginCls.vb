@@ -20,7 +20,7 @@ Public Class LoginCls
     End Property
 
     Public Sub New(uid As String, token As String)
-        _uinfo = UserInfo.getItem(uid)
+        _uinfo = UserInfo.getItem(uid, False)
         _tok = token
     End Sub
 

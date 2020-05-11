@@ -7,7 +7,8 @@ Namespace Controllers
 
         ' GET: api/users
         Public Function GetValues() As Dictionary(Of String, String)
-            Return UserInfo.GetItems()
+
+            Return UserInfo.getItems()
         End Function
 
         ' GET: api/users/5

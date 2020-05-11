@@ -11,8 +11,8 @@ Namespace Controllers
         End Function
 
         ' GET: api/designation/5
-        Public Function GetValue(ByVal id As Integer) As String
-            Return "value"
+        Public Function GetValue(ByVal id As String) As Designation
+            Return Designation.getItem(id)
         End Function
 
         ' POST: api/designation

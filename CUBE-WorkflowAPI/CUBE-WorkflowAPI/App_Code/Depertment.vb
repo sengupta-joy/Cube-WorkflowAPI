@@ -21,4 +21,15 @@ Public Class Depertment : Inherits WorkflowFrameworkBase(Of Depertment)
         Return lst
     End Function
 
+    Private Sub New(_id As String)
+        MyBase.ID = _id
+    End Sub
+
+
+    Friend Shared Function getItem(id As String) As Depertment
+        Dim x = New Depertment(id)
+        x.LoadItem()
+
+        Return x
+    End Function
 End Class
