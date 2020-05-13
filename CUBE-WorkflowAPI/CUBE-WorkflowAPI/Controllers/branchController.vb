@@ -11,8 +11,8 @@ Namespace Controllers
         End Function
 
         ' GET: api/branch/5
-        Public Function GetValue(ByVal id As Integer) As String
-            Return "value"
+        Public Function GetValue(ByVal id As String) As String
+            Return "Branch"
         End Function
 
         ' POST: api/branch

@@ -11,6 +11,10 @@ Namespace Controllers
             Return Entity.getItem()
         End Function
 
+        Public Function GetValue(ByVal id As String) As String
+            Return "Company name"
+        End Function
+
         ' POST: api/entity
         Public Sub PostValue(<FromBody()> ByVal value As String)
 
